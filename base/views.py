@@ -31,3 +31,5 @@ def blog_view(request):
 def blog_detail_view(request, id):
     blog_post = get_object_or_404(BlogPost, id=id)
     return render(request, 'base/blog_detail.html', {'blog_post': blog_post})
+
+

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import ContactMessage
+from .models import BlogPost
 # Register your models here.
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message')
@@ -20,3 +21,5 @@ class BlogPostAdmin(admin.ModelAdmin):
     list_filter = ('date_posted', 'category')
 
 admin.site.register(BlogPost, BlogPostAdmin)
+
+
