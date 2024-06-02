@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
-from .forms import ContactForm
 from django.core.mail import send_mail
 # Create your views here.
 def index(request):
@@ -9,24 +8,20 @@ def index(request):
 
 
 
+from django.shortcuts import render, redirect
+from .forms import ContactMessageForm
+from .models import ContactMessage
+
 def contact_view(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = ContactMessageForm(request.POST)
         if form.is_valid():
-            try:
-                form.save()
-                send_mail(
-                    form.cleaned_data['subject'],
-                    form.cleaned_data['message'],
-                    form.cleaned_data['email'],
-                    ['sumanbhatta735@gmail.com'],  # Change this to your recipient email
-                    fail_silently=False,
-                )
-                return JsonResponse({'success': True})
-            except Exception as e:
-                return JsonResponse({'success': False, 'error_message': str(e)}, status=500)
-        else:
-            return JsonResponse({'success': False, 'errors': form.errors}, status=400)
+            form.save()
+            return redirect('contact_success')
     else:
-        form = ContactForm()
-    return render(request, "base/contact.html", {'form': form})
+        form = ContactMessageForm()
+    
+    return render(request, 'base/index.html.html', {'form': form})
+
+def contact_success_view(request):
+    return render(request, 'base/contact_success.html')
