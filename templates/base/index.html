@@ -750,57 +750,39 @@
 
 
         <!-- Blog Start -->
-        <div class="blog" id="blog">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>From Blog</p>
-                    <h2>Latest Articles</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blogg-1.png' %}" alt="Blog">
-                            </div>
-                            <div class="blog-text">
-                                <h2>Web Design: Tips and Trends for Stunning Sites</h2>
-                                <div class="blog-meta">
-                                    <p><i class="far fa-user"></i>Admin</p>
-                                    <p><i class="far fa-list-alt"></i>Web Design</p>
-                                    <p><i class="far fa-calendar-alt"></i>24-Apr-2024</p>
-                                    <p><i class="far fa-comments"></i>21</p>
-                                </div>
-                                <p>
-                                    Explore the latest trends and expert tips in 'Web Design Mastery.' Learn to create stunning websites with ease, mastering essential techniques for an impactful online presence in today's digital landscape.
-                                </p>
-                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                            </div>
+    <div class="blog" id="blog">
+        <div class="container">
+            <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+                <p>From Blog</p>
+                <h2>Latest Articles</h2>
+            </div>
+            <div class="row">
+                {% for post in blog_posts %}
+                <div class="col-lg-6">
+                    <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="blog-img">
+                            <img src="{{ post.image.url }}" alt="Blog">
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blogg-2.png' %}" alt="Blog">
+                        <div class="blog-text">
+                            <h2>{{ post.title }}</h2>
+                            <div class="blog-meta">
+                                <p><i class="far fa-user"></i>{{ post.author }}</p>
+                                <p><i class="far fa-list-alt"></i>{{ post.category }}</p>
+                                <p><i class="far fa-calendar-alt"></i>{{ post.date_posted }}</p>
+                                <p><i class="far fa-comments"></i>{{ post.comments_count }}</p>
                             </div>
-                            <div class="blog-text">
-                                <h2>Web Development: Strategies for Powerful Online Experiences</h2>
-                                <div class="blog-meta">
-                                    <p><i class="far fa-user"></i>Admin</p>
-                                    <p><i class="far fa-list-alt"></i>Web Development</p>
-                                    <p><i class="far fa-calendar-alt"></i>19-May-2024</p>
-                                    <p><i class="far fa-comments"></i>46</p>
-                                </div>
-                                <p>
-                                    Dive into 'Empowering Web Development' for expert strategies and insights. Learn essential skills and discover solutions to build compelling online experiences that captivate audiences and drive success in the digital realm.
-                                </p>
-                                <a class="btn" href="">Read More <i class="fa fa-angle-right"></i></a>
-                            </div>
+                            <p>
+                                {{ post.content|truncatewords:30 }}
+                            </p>
+                            <a class="btn" href="{% url 'blog_detail' post.id %}">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        <!-- Blog End -->
+    </div>
+    <!-- Blog End -->
 
 
         <!-- Footer Start -->
