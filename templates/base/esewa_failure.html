@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failure</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Failed!</h1>
+        <p>There was an issue with your payment. Please try again.</p>
+        <a class="btn" href="{% url 'home' %}">Go Back to Home</a>
+    </div>
+</body>
+</html>

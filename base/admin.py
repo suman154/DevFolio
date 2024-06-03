@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import ContactMessage
 from .models import BlogPost
+from .models import Pricing
 # Register your models here.
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message')
@@ -23,3 +24,11 @@ class BlogPostAdmin(admin.ModelAdmin):
 admin.site.register(BlogPost, BlogPostAdmin)
 
 
+
+
+class PricingAdmin(admin.ModelAdmin):
+    list_display = ('title', 'price', 'disk_space', 'email_accounts', 'support')
+    list_filter = ('title', 'price')
+    search_fields = ('title', 'support')
+
+admin.site.register(Pricing, PricingAdmin)

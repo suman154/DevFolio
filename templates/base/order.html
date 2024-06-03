@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order {{ plan.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Order {{ plan.title }}</h1>
+        <p>Price: ${{ plan.price }} per month</p>
+        <form action="{% url 'esewa_payment' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="plan_id" value="{{ plan.id }}">
+            <button type="submit" class="btn">Pay with eSewa</button>
+        </form>
+    </div>
+</body>
+</html>
