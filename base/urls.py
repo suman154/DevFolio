@@ -4,14 +4,16 @@ from django.conf.urls.static import static
 from . import views
 urlpatterns = [
     path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('service/', views.service, name='service'),
+    path('experience/', views.experience, name='experience'),
+    path('portfolio/', views.portfolio, name='portfolio'),
+    path('price/', views.price, name='price'),
+    path('review/', views.review, name='review'),
+    path('team/', views.team, name='team'),
     path('contact/', views.contact_view, name='contact'),
     path('contact/success/', views.contact_success_view, name='contact_success'),
     path('blog/', views.blog_view, name='blog'),
-    path('blog/<int:id>/', views.blog_detail_view, name='blog_detail'),
-    path('order/<int:plan_id>/', views.order_view, name='order'),
-    path('esewa_payment/', views.esewa_payment, name='esewa_payment'),
-    path('esewa_success/', views.esewa_success, name='esewa_success'),
-    path('esewa_failure/', views.esewa_failure, name='esewa_failure'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

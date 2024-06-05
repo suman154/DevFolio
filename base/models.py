@@ -26,13 +26,3 @@ class BlogPost(models.Model):
     
 
 
-class Pricing(models.Model):
-    title = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    disk_space = models.IntegerField()
-    email_accounts = models.IntegerField()
-    support = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
